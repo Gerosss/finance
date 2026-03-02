@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="el">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Family Finance Tracker</title>
+  <title>Οικογενειακός Διαχειριστής Οικονομικών</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -70,74 +70,75 @@
 <header>
   <span>💰</span>
   <div>
-    <h1>Family Finance Tracker</h1>
-    <div style="font-size:0.8rem;opacity:0.7;">Keep your family's money in check</div>
+    <h1>Οικογενειακός Διαχειριστής Οικονομικών</h1>
+    <div style="font-size:0.8rem;opacity:0.7;">Κρατήστε τα οικονομικά της οικογένειάς σας υπό έλεγχο</div>
   </div>
 </header>
 <div class="container">
   <div class="month-nav">
-    <button onclick="changeMonth(-1)">&#8592; Prev</button>
+    <button onclick="changeMonth(-1)">&#8592; Προηγούμενο</button>
     <span id="monthLabel"></span>
-    <button onclick="changeMonth(1)">Next &#8594;</button>
+    <button onclick="changeMonth(1)">Επόμενο &#8594;</button>
   </div>
   <div class="summary-cards">
-    <div class="card income"><div class="label">💚 Total Income</div><div class="amount" id="totalIncome">$0.00</div></div>
-    <div class="card expense"><div class="label">🔴 Total Expenses</div><div class="amount" id="totalExpense">$0.00</div></div>
-    <div class="card balance"><div class="label">💼 Balance</div><div class="amount" id="balance">$0.00</div></div>
-    <div class="card budget-card"><div class="label">📊 Budget Used</div><div class="amount" id="budgetUsed">—</div></div>
+    <div class="card income"><div class="label">💚 Συνολικά Έσοδα</div><div class="amount" id="totalIncome">€0.00</div></div>
+    <div class="card expense"><div class="label">🔴 Συνολικά Έξοδα</div><div class="amount" id="totalExpense">€0.00</div></div>
+    <div class="card balance"><div class="label">💼 Υπόλοιπο</div><div class="amount" id="balance">€0.00</div></div>
+    <div class="card budget-card"><div class="label">📊 Χρήση Προϋπολογισμού</div><div class="amount" id="budgetUsed">—</div></div>
   </div>
   <div class="main-grid">
     <div class="panel">
-      <h2>➕ Add Transaction</h2>
-      <div class="form-group"><label>Description</label><input type="text" id="desc" placeholder="e.g. Grocery shopping" /></div>
-      <div class="form-group"><label>Amount ($)</label><input type="number" id="amount" placeholder="0.00" min="0" step="0.01" /></div>
+      <h2>➕ Προσθήκη Συναλλαγής</h2>
+      <div class="form-group"><label>Περιγραφή</label><input type="text" id="desc" placeholder="π.χ. Ψώνια στο σούπερ μάρκετ" /></div>
+      <div class="form-group"><label>Ποσό (€)</label><input type="number" id="amount" placeholder="0.00" min="0" step="0.01" /></div>
       <div class="form-group">
-        <label>Category</label>
+        <label>Κατηγορία</label>
         <select id="category">
-          <option value="Food">🍔 Food</option>
-          <option value="Transport">🚗 Transport</option>
-          <option value="Housing">🏠 Housing</option>
-          <option value="Health">💊 Health</option>
-          <option value="Entertainment">🎮 Entertainment</option>
-          <option value="Education">📚 Education</option>
-          <option value="Shopping">🛍️ Shopping</option>
-          <option value="Salary">💼 Salary</option>
-          <option value="Other">📦 Other</option>
+          <option value="Φαγητό">🍔 Φαγητό</option>
+          <option value="Μεταφορές">🚗 Μεταφορές</option>
+          <option value="Κατοικία">🏠 Κατοικία</option>
+          <option value="Υγεία">💊 Υγεία</option>
+          <option value="Ψυχαγωγία">🎮 Ψυχαγωγία</option>
+          <option value="Εκπαίδευση">📚 Εκπαίδευση</option>
+          <option value="Αγορές">🛍️ Αγορές</option>
+          <option value="Μισθός">💼 Μισθός</option>
+          <option value="Άλλο">📦 Άλλο</option>
         </select>
       </div>
-      <div class="form-group"><label>Date</label><input type="date" id="date" /></div>
+      <div class="form-group"><label>Ημερομηνία</label><input type="date" id="date" /></div>
       <div class="btn-row">
-        <button class="btn-income" onclick="addTransaction('income')">+ Add Income</button>
-        <button class="btn-expense" onclick="addTransaction('expense')">− Add Expense</button>
+        <button class="btn-income" onclick="addTransaction('income')">+ Προσθήκη Εσόδου</button>
+        <button class="btn-expense" onclick="addTransaction('expense')">− Προσθήκη Εξόδου</button>
       </div>
     </div>
     <div class="panel">
-      <h2>🎯 Monthly Budget Limits</h2>
+      <h2>🎯 Μηνιαία Όρια Προϋπολογισμού</h2>
       <div id="budgetLimits"></div>
     </div>
     <div class="panel">
-      <h2>📋 Transactions</h2>
+      <h2>📋 Συναλλαγές</h2>
       <div class="tab-row">
-        <button class="tab active" onclick="filterTx('all', this)">All</button>
-        <button class="tab" onclick="filterTx('income', this)">Income</button>
-        <button class="tab" onclick="filterTx('expense', this)">Expense</button>
+        <button class="tab active" onclick="filterTx('all', this)">Όλες</button>
+        <button class="tab" onclick="filterTx('income', this)">Έσοδα</button>
+        <button class="tab" onclick="filterTx('expense', this)">Έξοδα</button>
       </div>
       <div class="transaction-list" id="txList"></div>
     </div>
     <div class="panel">
-      <h2>📊 Spending by Category</h2>
+      <h2>📊 Δαπάνες ανά Κατηγορία</h2>
       <div id="budgetProgress"></div>
     </div>
     <div class="panel chart-panel">
-      <h2>📈 6-Month Overview</h2>
+      <h2>📈 Επισκόπηση 6 Μηνών</h2>
       <canvas id="myChart"></canvas>
     </div>
   </div>
 </div>
 <script>
-  const CATEGORIES = ['Food','Transport','Housing','Health','Entertainment','Education','Shopping','Other'];
-  const CAT_COLORS = { Food:'#f6ad55', Transport:'#68d391', Housing:'#63b3ed', Health:'#fc8181', Entertainment:'#b794f4', Education:'#76e4f7', Shopping:'#fbb6ce', Salary:'#68d391', Other:'#cbd5e0' };
-  const CAT_ICONS = { Food:'🍔', Transport:'🚗', Housing:'🏠', Health:'💊', Entertainment:'🎮', Education:'📚', Shopping:'🛍️', Salary:'💼', Other:'📦' };
+  const CATEGORIES = ['Φαγητό','Μεταφορές','Κατοικία','Υγεία','Ψυχαγωγία','Εκπαίδευση','Αγορές','Άλλο'];
+  const CAT_COLORS = { 'Φαγητό':'#f6ad55','Μεταφορές':'#68d391','Κατοικία':'#63b3ed','Υγεία':'#fc8181','Ψυχαγωγία':'#b794f4','Εκπαίδευση':'#76e4f7','Αγορές':'#fbb6ce','Μισθός':'#68d391','Άλλο':'#cbd5e0' };
+  const CAT_ICONS = { 'Φαγητό':'🍔','Μεταφορές':'🚗','Κατοικία':'🏠','Υγεία':'💊','Ψυχαγωγία':'🎮','Εκπαίδευση':'📚','Αγορές':'🛍️','Μισθός':'💼','Άλλο':'📦' };
+
   let transactions = JSON.parse(localStorage.getItem('ff_transactions') || '[]');
   let budgets = JSON.parse(localStorage.getItem('ff_budgets') || '{}');
   let currentFilter = 'all';
@@ -159,9 +160,9 @@
     const amount = parseFloat(document.getElementById('amount').value);
     const category = document.getElementById('category').value;
     const date = document.getElementById('date').value;
-    if (!desc) { alert('Please enter a description.'); return; }
-    if (!amount || amount <= 0) { alert('Please enter a valid amount.'); return; }
-    if (!date) { alert('Please select a date.'); return; }
+    if (!desc) { alert('Παρακαλώ εισάγετε περιγραφή.'); return; }
+    if (!amount || amount <= 0) { alert('Παρακαλώ εισάγετε έγκυρο ποσό.'); return; }
+    if (!date) { alert('Παρακαλώ επιλέξτε ημερομηνία.'); return; }
     transactions.push({ id: Date.now(), desc, amount, category, date, type });
     save();
     document.getElementById('desc').value = '';
@@ -172,7 +173,7 @@
   function save() { localStorage.setItem('ff_transactions', JSON.stringify(transactions)); localStorage.setItem('ff_budgets', JSON.stringify(budgets)); }
 
   function render() {
-    const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    const MONTHS = ['Ιανουάριος','Φεβρουάριος','Μάρτιος','Απρίλιος','Μάιος','Ιούνιος','Ιούλιος','Αύγουστος','Σεπτέμβριος','Οκτώβριος','Νοέμβριος','Δεκέμβριος'];
     document.getElementById('monthLabel').textContent = MONTHS[viewMonth] + ' ' + viewYear;
     const txs = monthTxs();
     const totalIncome = txs.filter(t=>t.type==='income').reduce((s,t)=>s+t.amount,0);
@@ -186,14 +187,14 @@
     balEl.style.color = bal >= 0 ? '#38a169' : '#e53e3e';
     const pct = totalBudget > 0 ? Math.round((totalExpense / totalBudget) * 100) : 0;
     const budgetUsedEl = document.getElementById('budgetUsed');
-    budgetUsedEl.textContent = totalBudget > 0 ? pct + '%' : 'Set budgets →';
+    budgetUsedEl.textContent = totalBudget > 0 ? pct + '%' : 'Ορίστε προϋπολογισμό →';
     budgetUsedEl.style.color = pct > 100 ? '#e53e3e' : pct > 75 ? '#dd6b20' : '#805ad5';
     renderBudgetLimits(); renderBudgetProgress(txs); renderTransactions(txs); renderChart();
   }
 
   function renderBudgetLimits() {
     document.getElementById('budgetLimits').innerHTML = CATEGORIES.map(cat =>
-      '<div class="budget-limit-row"><label>' + CAT_ICONS[cat] + ' ' + cat + '</label><span class="currency">$</span><input type="number" min="0" placeholder="Limit" value="' + (budgets[cat] || '') + '" onchange="setBudget(\'' + cat + '\', this.value)" /></div>'
+      '<div class="budget-limit-row"><label>' + CAT_ICONS[cat] + ' ' + cat + '</label><span class="currency">€</span><input type="number" min="0" placeholder="Όριο" value="' + (budgets[cat] || '') + '" onchange="setBudget(\'' + cat + '\', this.value)" /></div>'
     ).join('');
   }
   function setBudget(cat, val) { budgets[cat] = parseFloat(val) || 0; save(); render(); }
@@ -208,7 +209,7 @@
       const color = limit > 0 && spent > limit ? '#e53e3e' : limit > 0 && spent/limit > 0.75 ? '#dd6b20' : (CAT_COLORS[cat] || '#a0aec0');
       return '<div class="budget-item"><div class="cat-label">' + CAT_ICONS[cat] + ' ' + cat + '</div><div class="progress-wrap"><div class="progress-bar-bg"><div class="progress-bar-fill" style="width:' + pct + '%;background:' + color + '"></div></div></div><div class="budget-meta">' + fmt(spent) + (limit>0?' / '+fmt(limit):'') + '</div></div>';
     }).join('');
-    document.getElementById('budgetProgress').innerHTML = rows || '<div class="empty-state">No expenses this month</div>';
+    document.getElementById('budgetProgress').innerHTML = rows || '<div class="empty-state">Δεν υπάρχουν έξοδα αυτό τον μήνα</div>';
   }
 
   function filterTx(type, btn) {
@@ -221,7 +222,7 @@
     const filtered = currentFilter === 'all' ? txs : txs.filter(t=>t.type===currentFilter);
     const sorted = [...filtered].sort((a,b) => b.date.localeCompare(a.date));
     const el = document.getElementById('txList');
-    if (sorted.length === 0) { el.innerHTML = '<div class="empty-state">No transactions found</div>'; return; }
+    if (sorted.length === 0) { el.innerHTML = '<div class="empty-state">Δεν βρέθηκαν συναλλαγές</div>'; return; }
     el.innerHTML = sorted.map(t =>
       '<div class="tx-item"><span class="tx-icon">' + (CAT_ICONS[t.category]||'📦') + '</span><div class="tx-info"><div class="tx-desc">' + t.desc + '</div><div class="tx-sub">' + t.category + ' · ' + t.date + '</div></div><span class="tx-amount ' + t.type + '">' + (t.type==='income'?'+':'-') + fmt(t.amount) + '</span><button class="tx-delete" onclick="deleteTransaction(' + t.id + ')">✕</button></div>'
     ).join('');
@@ -229,7 +230,7 @@
 
   let chart = null;
   function renderChart() {
-    const MONTHS_SHORT = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const MONTHS_SHORT = ['Ιαν','Φεβ','Μαρ','Απρ','Μαι','Ιουν','Ιουλ','Αυγ','Σεπ','Οκτ','Νοε','Δεκ'];
     const labels = [], incomeData = [], expenseData = [];
     for (let i = 5; i >= 0; i--) {
       let m = viewMonth - i, y = viewYear;
@@ -245,14 +246,14 @@
     chart = new Chart(ctx, {
       type: 'bar',
       data: { labels, datasets: [
-        { label: 'Income', data: incomeData, backgroundColor: '#9ae6b4', borderRadius: 6 },
-        { label: 'Expenses', data: expenseData, backgroundColor: '#feb2b2', borderRadius: 6 }
+        { label: 'Έσοδα', data: incomeData, backgroundColor: '#9ae6b4', borderRadius: 6 },
+        { label: 'Έξοδα', data: expenseData, backgroundColor: '#feb2b2', borderRadius: 6 }
       ]},
-      options: { responsive: true, plugins: { legend: { position: 'top' } }, scales: { y: { beginAtZero: true, ticks: { callback: v => '$' + v } } } }
+      options: { responsive: true, plugins: { legend: { position: 'top' } }, scales: { y: { beginAtZero: true, ticks: { callback: v => '€' + v } } } }
     });
   }
 
-  function fmt(n) { return '$' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+  function fmt(n) { return '€' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
   render();
 </script>
 </body>
